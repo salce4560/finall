@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        dataMoney=[
+            {
+            'name':'a',
+            'price':100,
+            'num':50,
+            'date':'2022-01-01'
+            },
+            {
+            'name':'b',
+            'price':1000,
+            'num':50,
+            'date':'2022-01-01'
+            },
+            {
+            'name':'c',
+            'price':100,
+            'num':50,
+            'date':'2022-01-01'
+            },
+        ];
+        filterMoneyArr=dataMoney.filter((value,key)=>value['date']=='2022-01-01');
+        console.log('filterMoneyArr=>',filterMoneyArr);
+
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.run{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.man{
+width: 30%;
+height: 100px;
+background-color: blue;
+}
+.man1{
+width: 30%;
+height: 100px;
+background-color: burlywood;
+}
+.man2{
+width: 30%;
+height: 100px;
+background-color: chartreuse;
+}
+.manbobo{
+    border: 3px solid yellow;
+}
+.man1bobo{
+    border: 3px solid black;
+}
+.man2bobo{
+    border: 3px solid yellow;
+}
+</style>
+<body>
+ <div class="run">
+     <div class="man"></div>
+     <div class="man1"></div>
+     <div class="man2"></div>
+ </div>  
+ <script>
+$(document).ready(function(){
+$('.man').hover(function(){
+    $(this).addClass('.manbobo');
+})
+})
+
+ </script> 
+  <script 
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+  </script> 
+</body>
+</html>

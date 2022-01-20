@@ -1,0 +1,36 @@
+<html> 
+  
+<head> 
+    <script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+    </script> 
+    <script> 
+        <!-- jQuery code to show the working of hover() method -->
+        $(document).ready(function() { 
+            $("p").hover(function() { 
+                $(this).css("background-color", "green"); 
+            }, function() { 
+                $(this).css("background-color", "yellow"); 
+            }); 
+        }); 
+    </script> 
+    <style> 
+        p { 
+            width: 55%; 
+            height: 80px; 
+            padding: 20px; 
+            margin: 10px; 
+            border: 2px solid green; 
+            font-size: 50px; 
+        } 
+    </style> 
+</head> 
+  
+<body> 
+    <!--move the mouse in and out over this paragraph 
+        and background color will change-->
+    <p>GeeksforGeeks !</p> 
+  
+</body> 
+  
+</html>

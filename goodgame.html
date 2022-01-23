@@ -27,15 +27,7 @@ width: 30%;
 height: 100px;
 background-color: chartreuse;
 }
-.manbobo{
-    border: 3px solid yellow;
-}
-.man1bobo{
-    border: 3px solid black;
-}
-.man2bobo{
-    border: 3px solid yellow;
-}
+
 </style>
 <body>
  <div class="run">
@@ -43,16 +35,24 @@ background-color: chartreuse;
      <div class="man1"></div>
      <div class="man2"></div>
  </div>  
+ <script 
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+ </script> 
  <script>
 $(document).ready(function(){
 $('.man').hover(function(){
-    $(this).addClass('.manbobo');
-})
-})
-
+    $(this).css('border','3px solid yellow');
+},function(){
+    $(this).css('border','');
+});
+});
+// $(document).ready(function() { 
+//             $("p").hover(function() { 
+//                 $(this).css("background-color", "green"); 
+//             }, function() { 
+//                 $(this).css("background-color", "yellow"); 
+//             }); 
+//         }); 
  </script> 
-  <script 
-  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
-  </script> 
 </body>
 </html>

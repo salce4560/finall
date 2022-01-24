@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        /* 代码主体 */
+        body{
+            background: #2c9afc;
+        }
+        .lotteryBox{
+            width: 420px;
+            height: 420px;
+            border: 7px solid #99d4ff;
+            margin: 50px auto;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+        .lotteryBox ul{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .lotteryBox ul li{
+            width: 120px;
+            height: 120px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .lotteryBox ul li img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #lotteryBtn{
+            cursor: pointer;
+            opacity: 0.9;
+        }
+        #lotteryBtn:hover{
+            opacity: 1;
+        }
+        .active img{
+            opacity: 0.4;
+        }
+        #lotteryBtnStop{
+            opacity: 0.3;
+        }
+        /* 抽奖结果 */
+        #lotteryResult{
+            position: absolute;
+            left: 10%;
+            bottom: -67px;
+            width: 80%;
+            height: 60px;
+            background-color: rgba(0,0,0,.5);
+            text-align: center;
+            color: white;
+            line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="lotteryBox">
+        <ul>
+            <li class="item"><img src="images/01.jpg" alt=""></li>
+            <li class="item"><img src="images/02.jpg" alt=""></li>
+            <li class="item"><img src="images/03.jpg" alt=""></li>
+            <li class="item"><img src="images/04.jpg" alt=""></li>
+            <li id="lotteryBtn"><img src="images/cj.jpg" alt=""></li>
+            <li class="item"><img src="images/05.jpg" alt=""></li>
+            <li class="item"><img src="images/06.jpg" alt=""></li>
+            <li class="item"><img src="images/07.jpg" alt=""></li>
+            <li class="item"><img src="images/08.jpg" alt=""></li>
+        </ul>
+        <div id="lotteryResult">等待抽奖...</div>
+    </div>
+    <!-- 内部脚本代码 -->
+    <script>
+        /*
+             九宫格位置
+            0    1    2
+
+            3   按钮  4
+
+            5    6    7
+        */
+        var lotteryBtn = document.getElementById('lotteryBtn');//抽奖按钮
+        var lotteryLi = document.getElementsByClassName('item');//奖品
+        var lotteryResult = document.getElementById('lotteryResult');//抽奖结果
+
+        var directionArray = [0,1,2,4,7,6,5,3];//奖品li标签滚动的顺序，即抽奖转动方向
+        var lotteryIndex = 0;//lotteryIndex用来存放得到的随机数，也就是抽中的奖品
+        var lotteryStatus = true;//定义一个抽奖开关
+        var timer = null;//定义时间标识符
+        //1、点击抽奖按钮
+        lotteryBtn.onclick = function(){
+            if(lotteryStatus){
+                //2、当抽奖开关为true的时候，可点击抽奖
+                lotteryStatus = false;//抽奖开关设为false 处于抽奖中 即不能点击抽奖
+                lotteryBtn.id = 'lotteryBtnStop';//更换抽奖按钮状态-禁止态
+                //3、定义重复性定时器，设置转动效果和速度
+                timer = setInterval(function(){
+                    lotteryLi[directionArray[lotteryIndex]].className = "item";
+                    lotteryIndex++; //将物品连续在一起转动
+                    if (lotteryIndex >= 8) {
+                        lotteryIndex = 0;
+                    }
+                    lotteryLi[directionArray[lotteryIndex]].className = "item active"
+                },1000)
+                //4、定义一次性延时定时器，设置转动时间
+                setTimeout(function() {
+                    clearInterval(timer);
+                    // 6、添加暗操作，抽奖时阻止抽到最好的物品
+                    if (lotteryIndex == 3) {
+                        lotteryLi[directionArray[lotteryIndex]].className = "item";
+                        lotteryLi[directionArray[lotteryIndex+1]].className = "item active";
+                    }
+                    lotteryStatus = true;
+                    document.getElementById('lotteryBtnStop').id = 'lotteryBtn'//更换抽奖按钮状态-激活态
+                    //5、定义抽奖结束后的提示文本[0,1,2,4,7,6,5,3]
+                    if(lotteryIndex == 0){
+                        lotteryResult.innerText = '感谢参与'
+                    }else if(lotteryIndex == 1){
+                        lotteryResult.innerText = '恭喜你中了玫瑰'
+                    }else if(lotteryIndex == 2){
+                        lotteryResult.innerText = '恭喜你中了盲盒'
+                    }else if(lotteryIndex == 3){
+                        lotteryResult.innerText = '恭喜你中了一个小姐姐'/*'恭喜你中了手机'*/
+                    }else if(lotteryIndex == 4){
+                        lotteryResult.innerText = '恭喜你中了一个小姐姐'
+                    }else if(lotteryIndex == 5){
+                        lotteryResult.innerText = '恭喜你中了耳机'
+                    }else if(lotteryIndex == 6){
+                        lotteryResult.innerText = '恭喜你中了一个小哥哥'
+                    }else if(lotteryIndex == 7){
+                        lotteryResult.innerText = '恭喜你中了积分'
+                    }
+                }, Math.round(Math.random() * 3000) + 1000) 
+            }else{
+                console.log('无法点击，正在抽奖中')
+            }
+        }
+    </script>
+</body>
+</html>
+-----------------------------------
+JS实现九宫格抽奖（一）-匀速版
+https://blog.51cto.com/u_15082391/3623773

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper {
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-flow: row wrap;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border: 1px solid red;
+    }
+     
+    .wrapper div {
+      flex: none;
+      width: 100px;
+      height: 100px;
+      box-sizing: border-box;
+      border: 1px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+     
+    .active {
+      background-color: red;
+    }
+     
+    .wrapper div:nth-child(5) {
+      cursor: pointer;
+    }
+     
+    .result {
+      height: 100px;
+      display: inline-block;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      line-height: 100px;
+      font-size: 40px;
+      font-weight: 700;
+      color: #ff4400;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <div>谢谢惠顾</div>
+        <div>十万元现金</div>
+        <div>谢谢惠顾</div>
+        <div>iphone11</div>
+        <div>抽奖</div>
+        <div>美的冰箱</div>
+        <div>谢谢惠顾</div>
+        <div>50元红包</div>
+        <div>谢谢惠顾</div>
+      </div>
+    <div class="result"></div>
+    <script>
+        var t, m, num, time, index, target, current;
+        //以索引值为0，1，2，5，8，7，6，3的div元素为循环目标，
+        //因为以num总数递减的方式进行循环，故将数组倒序定义
+        var arr = [3, 6, 7, 8, 5, 2, 1, 0];
+        var div = document.querySelectorAll('.wrapper div');
+        var result = document.querySelector('.result');
+        div[4].onclick = function() {
+           clearInterval(time);
+          div[4].innerHTML = '抽奖中...';
+          result.innerHTML = '';
+          //中奖目标设为0到7的随机整数
+          target = Math.floor(Math.random() * 8);
+          //起始位置设为随机，且以num为总的循环数
+
+           num = Math.floor(Math.random() * 8) + 30;
+           console.log('num=',num);
+
+          //将总循环数的2/3保存，方便调整速率峰值出现的时间
+          //若m为总循环的1/2，则速度峰值会在总时长的中间出现
+
+           m = Math.floor(num * 2 / 3);
+           console.log('m=',m);
+
+          //此处if语句可限制中奖，从第一个开始外圈顺时针分别对应7，6，5，4，3，2，1，0
+          //如设置target == 6 即限制中十万元现金，以下代码为100%不中奖
+
+        //   if (target == 6|| target == 4 || target == 2 || target == 0) { 
+        //      target++;
+        //    }
+          speed();
+    
+          function speed() {
+            //将循环目标div的索引值转换为循环总数的表达式
+            index = arr[num % 8];
+            //给当前循环元素添加样式，并移除之前的样式
+            if (current) {
+              current.remove('active');
+            }
+
+            div[index].classList.add('active');
+            current = div[index].classList;
+            //速度函数，可调试速率
+            t = Math.floor(Math.pow((num - m), 2) + 100);
+            //一次性定时器，嵌套递归循环控制速度
+            time = setTimeout(function() {
+                speed()}, t)
+            //判断中奖结果
+            if (num == target) {
+              clearTimeout(time);
+              div[4].innerHTML = '抽奖';
+              switch (target) {
+                case 6:
+                  result.innerHTML = '恭喜您抽中' + div[arr[target % 8]].innerHTML + '大奖';
+                  break;
+                case 4:
+                  result.innerHTML = '恭喜您抽中' + div[arr[target % 8]].innerHTML;
+                  break;
+                case 2:
+                  result.innerHTML = '恭喜您抽中' + div[arr[target % 8]].innerHTML;
+                  break;
+                case 0:
+                  result.innerHTML = '恭喜您抽中' + div[arr[target % 8]].innerHTML;
+                  break;
+                default:
+                  result.innerHTML = div[arr[target % 8]].innerHTML;
+              }
+            }
+            else num--;
+          }
+        }
+    
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>換圖片</title>
+</head>
+<body>
+<button id="btn">隱藏</button>
+<button id="btu">換</button>
+<img src="11.jpg" id="img" width="300px" />
+</body>
+<script>
+var btn = document.getElementById("btn");
+var btu = document.getElementById("btu");
+var img = document.getElementById("img");
+var xia = 0;
+btn.addEventListener("click",function (){
+//判斷按鈕文字內容
+if(btn.innerText == "隱藏"){
+//當按鈕文字為隱藏時,圖片隱藏
+img.style.opacity = 0;
+//同時,按鈕文字變成現實  下面同理
+btn.innerText = "顯示";
+}else{
+img.style.opacity = 1;
+btn.innerText = "隱藏";
+}
+});
+var imgs = ["11.jpg","12.jpg"];
+//給"換"新增點選事件
+
+</script>
+</html>     

@@ -177,12 +177,19 @@ const ssvg=['Keelung_City','Taipei_city','Taoyuan_City','new_Taipei_city','Hsinc
             $(document).ready(function () {
                 $("g").hover(
                 function(){
-                    $("div").children('#'+ssvg[0]).css("fill","red");
+                    console.log(1);
+                    // $("div").children('#'+ssvg[0]).css("fill","red");
+                    // $("div").find("span").css({"color":"red","border":"2px solid red"});
+                    $("g").find('#'+ssvg[0]).css("fill","blue");
+                }, 
+                function(){
+                // $('#'+ssvg[0]).css("fill","none");
+                $("g").find('#'+ssvg[0]).css("fill","white");
+                    }
+                
+                );
                 // console.log('keelung','#' + ssvg[0]);
                 // $('#'+ssvg[0]).css("fill","red");
-            }, function(){
-                // $('#'+ssvg[0]).css("fill","none");
-                $("div").children('#'+ssvg[0]).css("fill","none");
             })
             // $("div").children(".selected").css("color", "blue");
                 // $('#' + ssvg[0]).css("fill","red");
@@ -194,7 +201,7 @@ const ssvg=['Keelung_City','Taipei_city','Taoyuan_City','new_Taipei_city','Hsinc
             // }, function(){
             //     $('#' + ssvg[0]).show();
             // })
-            })
+           
 </script>
 </body>
 </html>

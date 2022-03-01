@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遍历</title>
+    <script src="jquery-3.3.1.js"></script>
+    <script src="traverseText.js"></script>
+</head>
+<style>
+    #container{
+        width: 425px;
+        height: 250px;
+        border:10px solid cornflowerblue;
+    }
+    
+    #wrapper{
+        width: 305px;
+        height: 145px;
+        margin-top: 15px;
+        margin-left: 15px;
+        border: 6px solid forestgreen;
+    }
+    
+    ul{
+        width: 175px;
+        height: 65px;
+        margin-top: 15px;
+        margin-left: 15px;
+        border: 2px solid firebrick;
+    }
+</style>
+<body>
+      <div id="container">容器
+           <div id="wrapper">承载列表
+               <ul id="content">
+                   <li>法师</li>
+                   <li>德鲁伊</li>
+                   <li>潜行者</li>
+               </ul>
+           </div>
+      </div><br/><br/>
+      <button id="childBtn1">child子元素</button>
+      <button id="childBtn2">child孙元素</button>
+      <button id="findBtn">find孙元素</button>
+      <script>
+          $(document).ready(function () {
+   
+   $("#childBtn1").click(function () {
+       $("#container").children().css({border:"8px solid black"});
+   });
+   $("#childBtn2").click(function () {
+       $("#container").children("ul").css({border:"8px solid black"});
+   });
+   $("#findBtn").click(function () {
+       $("#container").find("ul").css({border:"8px solid blueviolet"});
+   });
+}); 
+//向下遍历时，children（）方法只能访问子元素，括号内只能添加子元素，添加其他没用
+//而find（）方法可以访问孙元素以及更下一级元素
+      </script>
+</body>
+</html>

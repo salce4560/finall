@@ -12,11 +12,11 @@
 </style>
 
 <body>
-    <div>213132132132</div>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 690.67 532.45" style="enable-background:new 0 0 690.67 532.45;" xml:space="preserve">
         <g id="layer_1">
             <rect x="-323.25" style="fill:none;" width="1050.42" height="532.45"></rect>
+            <!--shadows-->
             <path style="fill:#006A5F;" d="M650.6,261.84c0.2,10.61-8.81,19.29-19.42,19.29H595.1c-10.45,0-18.93,8.48-18.93,18.93v9.89
                 c0,10.45-8.48,18.93-18.93,18.93h-4.76c0,0-6.02,0.04-7.41,0c-3.51-0.1-6.35,2.84-6.35,6.35v5.25c0,9.61-7.79,17.41-17.41,17.41
                 h-46.24c-3.51,0-6.35,2.84-6.35,6.35v1.03c0,7.6-6.16,13.75-13.75,13.75h-4.06h-0.56c-3.51,0-6.35-2.84-6.35-6.35v-0.93
@@ -486,6 +486,7 @@
                 c0-4.89-3.97-8.86-8.86-8.86h-0.37c-2.8,0-5.08-2.27-5.08-5.08v-51.1h34.83c4.09,0,7.41,3.32,7.41,7.41l0.03,2.43l-0.03-0.61
                 c0,4.09,3.32,7.41,7.41,7.41h68.43c7.01,0,12.7,5.69,12.7,12.7v3.13c0,7.01,5.69,12.7,12.7,12.7h27.12V129.14z"></path>
         </g>
+        
         <g class="map-area" tabindex="0" id="Ilan_County">
             <g>
                 <path style="fill:#007C71;" d="M181.9,88.59l33.95-0.06c1.84,0,3.33-1.49,3.33-3.33v-0.22c0-4.2,3.41-7.61,7.61-7.61
@@ -570,7 +571,7 @@
         // var KinmenCounty= document.getElementById("Kinmen_County");
         // var PenghuCounty= document.getElementById("Penghu_County");
         // var LianjiangCounty= document.getElementById("Lianjiang_County");
-        const ssvg = ['Taipei_City', 'NewTaipei_City', 'Keelung_City', 'Taoyuan_City', 'Hsinchu_City', 'Hsinchu_County', 'Changhua_County', 'Miaoli_County', 'Taichung_City',
+        const ssvg = ['Taipei_City', 'NewTaipei_City', 'Keelung_City', 'Taoyuan_City', 'Hsinchu_City', 'Hsinchu_County', 'Changhua_County', 'Miaoli_County', 'Taichung_City','Taichung_County',
             'Changhua_County', 'Nantou_County', 'Yunlin_County', 'Chiayi_County', 'Chiayi_City', 'Kaohsiung_City', 'Pingtung_County',
             'Taitung_County', 'Hualian_County', 'Ilan_County', 'Kinmen_County', 'Penghu_County', 'Lianjiang_County', 'Tainan_City'];
         console.log('#' + ssvg[0]);
@@ -582,9 +583,12 @@
                 //      $("this").hide();
                 //  });
             }
-            $('#' + ssvg[0]).hover(function () {
+            $("svg").hover(()=>{console.log("HI")})
+            $('#'+ssvg[0]).hover(
+                function(){
+                console.log('#' + ssvg[0])
                 $('#' + ssvg[0]).hide();
-            }, function () {
+            }, function(){
                 $('#' + ssvg[0]).show();
             })
             

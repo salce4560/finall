@@ -5,30 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGLX8EBPV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3JGLX8EBPV');
+</script>
 </head>
 <style>
-	.main{
-		fill: blue;
-	}
+
 </style>
 <body>
-	<div class="container mt-5">
-        <table id="table_id" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>幣別</th>
-                    <th>時間</th>
-                    <th>最高價</th>
-                    <th>最低價</th>
-                </tr>
-            </thead>
-            <tbody>
-
-
-            </tbody>
-        </table>
-        <button id="button">button</button>
-<div>
+<div class="row">
+<div class="col">
+	<p>台灣</p>
+	<p>2400萬</p>
+</div>
+<div class="col">
 	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	width="595.28px" height="841.89px" viewBox="0 0 595.28 841.89" enable-background="new 0 0 595.28 841.89" xml:space="preserve">
 	<g id="圖層_2">
@@ -188,12 +186,15 @@
 		456.334,488.653 462.334,469.32 462.334,449.654 468.667,433.654 473.667,414.989 473.667,404.354 	"/>
 	</g>
 </svg>
-</div>	
 </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script>
+	
 	const settings = {
 		"async": true,
 		"crossDomain": true,
@@ -237,16 +238,38 @@ const ssvg=['Keelung_City','Taipei_city','Taoyuan_City','new_Taipei_city','Hsinc
             console.log('keelung','#' + ssvg[0]);
             $(document).ready(function () {
 				for (let i = 0; i < ssvg.length; i++) {
-                $("g").hover(
-                function(){
-                    console.log(1);
-                    $("g").find('#'+ssvg[0]).css("fill","red")
-                }, 
-                function(){
-                $("g").find('#'+ssvg[0]).css("fill","white");
-                    }
-                );
+					$('#'+ssvg[i]).on('mouseenter', function () {
+						console.log('mouseenter');
+						console.log(ssvg[i]);
+						$('#'+ssvg[i]).css("fill", "red");
+						 $("p").html(ssvg[i]);
+            		});
+					$('#'+ssvg[i]).on('mouseout', function () {
+						console.log('mouseout');
+						$('#'+ssvg[i]).css("fill", "white");
+						 $("p").html("台灣");
+            		});
+                // $("g").hover(
+                // function(){
+                //     console.log(1);
+                //     $("g").find('#'+ssvg[0]).css("fill","red")
+                // }, 
+                // function(){
+                // $("g").find('#'+ssvg[0]).css("fill","white");
+                //     }
+                // );
 				}
+				
+            // 滑鼠移入事件
+            // $('#mouseenterP').on('mouseenter', function () {
+            //     console.log('mouseenter');
+            // });
+
+            // // 滑鼠移出事件
+			// $('#mouseenterP').on('mouseenter', function () {
+            //     console.log('mouseenter');
+            // });
+
                 // console.log('keelung','#' + ssvg[0]);
                 // $('#'+ssvg[0]).css("fill","red");
             })
